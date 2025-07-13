@@ -31,8 +31,28 @@ func peekNationalDestinationCode(countryCode string, value string) (n int, found
 		if len(value) < length {
 			return 0, false
 		}
+		switch value[0] {
+		case '0','1','2','3','4','5','6','7','8','9':
+			// nothing here
+		default:
+			return 0, false
+		}
+		switch value[1] {
+		case '0','1','2','3','4','5','6','7','8','9':
+			// nothing here
+		default:
+			return 0, false
+		}
+		switch value[2] {
+		case '0','1','2','3','4','5','6','7','8','9':
+			// nothing here
+		default:
+			return 0, false
+		}
 		return 3, true
+			
 //@TODO
+			
 	default:
 		return 0, false
 	}
