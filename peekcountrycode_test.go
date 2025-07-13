@@ -2639,6 +2639,36 @@ func TestPeekCountryCode(t *testing.T) {
 		}
 	}
 
+	for _, areaCode := range areaCodesUS {
+		{
+			test := struct{
+				String string
+				ExpectedLength int
+				ExpectedFound bool
+			}{
+				String: "1" + areaCode,
+				ExpectedLength: 1,
+				ExpectedFound: true,
+			}
+
+			tests = append(tests, test)
+		}
+
+		{
+			test := struct{
+				String string
+				ExpectedLength int
+				ExpectedFound bool
+			}{
+				String: "1" + areaCode + "5551234",
+				ExpectedLength: 1,
+				ExpectedFound: true,
+			}
+
+			tests = append(tests, test)
+		}
+	}
+
 	for testNumber, test := range tests {
 
 		actualLength, actualFound := peekCountryCode(test.String)
