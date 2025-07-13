@@ -7,10 +7,10 @@ import (
 )
 
 const (
-	errBadCountryCode             = erorr.Error("bad country-code")
-	errBadNationalDestinationCode = erorr.Error("bad national-destination-code")
-	errBadSubscriberNumber        = erorr.Error("bad subscriber-number")
-	errEmptyPhoneNumber           = erorr.Error("empty phone-number")
+	ErrBadCountryCode             = erorr.Error("bad country-code")
+	ErrBadNationalDestinationCode = erorr.Error("bad national-destination-code")
+	ErrBadSubscriberNumber        = erorr.Error("bad subscriber-number")
+	ErrEmptyPhoneNumber           = erorr.Error("empty phone-number")
 )
 
 // ParseWithIsoCountryCodeTolerantly parses `value` for a E.164 phone-number (without the country-code) tolerantly,
@@ -32,13 +32,13 @@ const (
 //	// subscriberNumber == "5551234"
 func ParseWithIsoCountryCodeTolerantly(isoCountryCode string, value string) (countryCode string, nationalDestinationCode string, subscriberNumber string, err error) {
 	if len(value) <= 0 {
-		err = errEmptyPhoneNumber
+		err = ErrEmptyPhoneNumber
 		return
 	}
 
 	countryCode = isoToCountryCode(isoCountryCode)
 	if "" == countryCode {
-		err = errBadCountryCode
+		err = ErrBadCountryCode
 		return
 	}
 
@@ -63,7 +63,7 @@ func ParseWithIsoCountryCodeTolerantly(isoCountryCode string, value string) (cou
 func ParseTolerantly(value string) (countryCode string, nationalDestinationCode string, subscriberNumber string, err error) {
 
 	if len(value) <= 0 {
-		err = errEmptyPhoneNumber
+		err = ErrEmptyPhoneNumber
 		return
 	}
 
@@ -81,7 +81,7 @@ func ParseTolerantly(value string) (countryCode string, nationalDestinationCode 
 	{
 		n, found := peekCountryCode(value)
 		if !found {
-			err = errBadCountryCode
+			err = ErrBadCountryCode
 			return
 		}
 
@@ -96,7 +96,7 @@ func ParseTolerantly(value string) (countryCode string, nationalDestinationCode 
 	{
 		n, found := peekNationalDestinationCode(countryCode, value)
 		if !found {
-			err = errBadNationalDestinationCode
+			err = ErrBadNationalDestinationCode
 			return
 		}
 
@@ -114,7 +114,7 @@ func ParseTolerantly(value string) (countryCode string, nationalDestinationCode 
 		case '0' <= r && r <= '9':
 			// nothing here
 		default:
-			err = errBadSubscriberNumber
+			err = ErrBadSubscriberNumber
 			return
 		}
 	}
