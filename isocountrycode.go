@@ -10,6 +10,8 @@ package e164
 func ISOCountryCode(countryCode string, nationalDestinationCode string) string {
 
 	// A switch in Go is faster than map.
+	//
+	// THIS SWITCH WILL NEED TO BE UPDATED WHENEVER THE ITU-T MAKES AN UPDATE.
 	switch countryCode {
 	case "1":
 		switch nationalDestinationCode {
