@@ -9,6 +9,7 @@ import (
 const (
 	errBadCountryCode             = erorr.Error("bad country-code")
 	errBadNationalDestinationCode = erorr.Error("bad national-destination-code")
+	errBadSubscriberNumber        = erorr.Error("bad subscriber-number")
 	errEmptyPhoneNumber           = erorr.Error("empty phone-number")
 )
 
@@ -108,6 +109,15 @@ func ParseTolerantly(value string) (countryCode string, nationalDestinationCode 
 	}
 
 	subscriberNumber = value
+	for _, r := range subscriberNumber {
+		switch {
+		case '0' <= r && r <= '9':
+			// nothing here
+		default:
+			err = errBadSubscriberNumber
+			return
+		}
+	}
 
 	return
 }
