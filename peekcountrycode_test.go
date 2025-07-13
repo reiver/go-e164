@@ -289,6 +289,13 @@ func TestPeekCountryCode(t *testing.T) {
 			ExpectedFound: true,
 		},
 
+		// 20 – Egypt
+		{
+			String:             "2 0BANANA",
+			ExpectedLength: 0,
+			ExpectedFound: false,
+		},
+
 		{
 			String:             "21BANANA",
 			ExpectedLength: 0,
