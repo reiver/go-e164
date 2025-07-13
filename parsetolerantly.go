@@ -12,7 +12,7 @@ const (
 	errEmptyPhoneNumber           = erorr.Error("empty phone-number")
 )
 
-// ParseWithIsoCountryCodeTolerantly parses `value` for a E.164 phone-number (without the country-code) tolerantly without the country-code,
+// ParseWithIsoCountryCodeTolerantly parses `value` for a E.164 phone-number (without the country-code) tolerantly,
 // such that it allows spaces between the country-code, the national-destination-code and the subscriber-number.
 // The country-code implied by the ISO 3166-1 alpha-2 country-code,
 //
