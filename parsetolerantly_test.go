@@ -123,3 +123,87 @@ func TestParseTolerantly(t *testing.T) {
 		}
 	}
 }
+
+func TestParseTolerantly_fail(t *testing.T) {
+
+	tests := []struct{
+		String string
+	}{
+		{
+			String: "BANANA",
+		},
+
+
+
+		{
+			String: "06045551234",
+		},
+		{
+			String: "+06045551234",
+		},
+
+
+
+		{
+			String: "16 045551234",
+		},
+		{
+			String: "160 45551234",
+		},
+		{
+			String: "16045 551234",
+		},
+		{
+			String: "160455 51234",
+		},
+		{
+			String: "1604555 1234",
+		},
+		{
+			String: "16045551 234",
+		},
+		{
+			String: "160455512 34",
+		},
+		{
+			String: "1604555123 4",
+		},
+
+
+
+		{
+			String: "+16 045551234",
+		},
+		{
+			String: "+160 45551234",
+		},
+		{
+			String: "+16045 551234",
+		},
+		{
+			String: "+160455 51234",
+		},
+		{
+			String: "+1604555 1234",
+		},
+		{
+			String: "+16045551 234",
+		},
+		{
+			String: "+160455512 34",
+		},
+		{
+			String: "+1604555123 4",
+		},
+	}
+
+	for testNumber, test := range tests {
+
+		_, _, _, err := e164.ParseTolerantly(test.String)
+		if nil == err {
+			t.Errorf("For test #%d, expected an error but did not actually get one.", testNumber)
+			t.Logf("STRING: %q", test.String)
+			continue
+		}
+	}
+}
