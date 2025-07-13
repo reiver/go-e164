@@ -8,6 +8,14 @@ Online documentation, which includes examples, can be found at: http://godoc.org
 
 [![GoDoc](https://godoc.org/github.com/reiver/go-e164?status.svg)](https://godoc.org/github.com/reiver/go-e164)
 
+## Example
+
+Here is an example of parsing a phone-number if E.164 format:
+
+```golang
+countryCode, nationalDestinationCode, subscriberNumber, err := e164.ParseTolerantly("+16045551234")
+```
+
 ## Import
 
 To import package **e164** use `import` code like the following:
